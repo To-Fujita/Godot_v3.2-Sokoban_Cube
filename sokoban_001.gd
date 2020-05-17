@@ -1,0 +1,294 @@
+extends Node
+
+# Sokoban Cube Stage Data
+# by T. Fujita
+
+# B: Block(Movable)
+# C: Goal + Block
+# D: Goal + Obstacle
+# F: Floor
+# G: Goal
+# O: Obstacle(Moveable)
+# P: Player
+# S: Space
+# W: Wall
+
+var room = []
+
+func _ready():
+# Room-000
+	room.append([])
+	room[0] = [[
+	"WWWWWWWWW",
+	"WFFFFFFFW",
+	"WFPFFFFFW",
+	"WFFFFBFFW",
+	"WFFFFFFFW",
+	"WFFBFFFFW",
+	"WFOFFFFFW",
+	"WGGWWLWLW",
+	"WWWWWWWWW"],
+	["SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]
+	
+#Room-001
+	room.append([])
+	room[1] = [[
+	"SSWWWW",
+	"SWWPGW",
+	"SWGBBW",
+	"WWFBFW",
+	"WFGWFW",
+	"WFFFFW",
+	"WFFWWW",
+	"WWWWSS"],
+	["SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS"]]
+
+# Room-002
+	room.append([])
+	room[2] = [[
+	"SSSWWWWW",
+	"SSWWFPFW",
+	"SSWFFFFW",
+	"SWWFFFWW",
+	"WWFFFWWS",
+	"WFGFWWSS",
+	"WFFFWSSS",
+	"WFFFWWWS",
+	"WFFBFFWS",
+	"WFGBFFWS",
+	"WWWFWWWS",
+	"SSWWWSSS"],
+	["SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS"]]
+
+# Room-003
+	room.append([])
+	room[3] = [[
+	"SSWWWWWW",
+	"SWWFFFFW",
+	"SWFFWWFW",
+	"WWFWWFFW",
+	"WFFFFFWW",
+	"WFBBWGFW",
+	"WWWFFGFW",
+	"SSWWPWWW",
+	"WWWWWWSS"],
+	["SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS",
+	"SSSSSSSS"]]
+
+# Room-004
+	room.append([])
+	room[4] = [[
+	"WWWWWSSSS",
+	"WFPFWWWWW",
+	"WFFFWFFFW",
+	"WWFCBFFWW",
+	"SWFGWFFWS",
+	"SWWFFFWWS",
+	"SSWFFFWSS",
+	"SSWWFWWSS",
+	"SSWFFWWWS",
+	"SWWFFFFWS",
+	"SWFFBFFWS",
+	"SWFBWGWWS",
+	"SWWFFGWSS",
+	"SSWWWWWSS"],
+	["SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]
+
+# Room-005
+	room.append([])
+	room[5] = [[
+	"FFFWW",
+	"WWFWW",
+	"WWBFF",
+	"FLFWF",
+	"PFFFG"],
+	["SSSSS",
+	"SSSSS",
+	"SBSSS",
+	"SSSGS",
+	"SSSSS"]]
+
+# Room-006
+	room.append([])
+	room[6] = [[
+	"SSWWWS",
+	"WWWWWW",
+	"WWGGWW",
+	"SSGGSS",
+	"WWWSSS",
+	"WWWSSS"],
+	["SSSSSS",
+	"SBSSBS",
+	"SSSSSP",
+	"SSSSSS",
+	"SBSSSS",
+	"SSSSSS"],
+	["SSSSSS",
+	"SBSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS",
+	"SSSSSS"]]
+
+# Room-007
+	room.append([])
+	room[7] = [[
+	"WFPFFGGGGGGW",
+	"WFFFFFWWWWWW",
+	"WFFFFFFFFFFF",
+	"WFFFFFFFFFFF",
+	"WWFWWWWWWWWW",
+	"WWBFFFFFFFFF",
+	"FFFWWWWBWWWF",
+	"FBFWFFFFFFFF",
+	"FFFWWWWWWWLW",
+	"WWWWWWWWWWWW",
+	"WWWWWWWWWWWW"],
+	["SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SSSBSSSSSSSS",
+	"SSSSSSSSSSSS",
+	"SBSSSSBSSSSS",
+	"SSSSSSSSSSSS"]]
+
+# Room-008
+	room.append([])
+	room[8] = [[
+	"WWWWWWWWW",
+	"WWFFWFPWW",
+	"WWFBBBFWW",
+	"WWFFBFFWW",
+	"WWFBBBFWW",
+	"WWGGLGGWW",
+	"WWGGBGGWW",
+	"WWWGWGWWW",
+	"WWWWWWWWW",
+	"WWWWWWWWW"],
+	["SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWSSSSSWS",
+	"SWWSSSWWS",
+	"SBSSSSSBS",
+	"SSSSSSSSS"]]
+
+# Room-009
+	room.append([])
+	room[9] = [[
+	"GGOFFFFFF",
+	"OOFFFFFFW",
+	"FFPFFFFFW",
+	"WFFFFBFFW",
+	"WFOFFFFFW",
+	"WFFBFFFFW",
+	"WFFFFFFFW",
+	"WWWWWWWLW",
+	"WWWWWWWWW"],
+	["SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]
+
+# Room-0010
+	room.append([])
+	room[10] = [[
+	"GGOFFFFFF",
+	"OOFFFFFFW",
+	"FFPFFFFFW",
+	"WFFFFFFFW",
+	"WFOFFFFFW",
+	"WFFFFFFFW",
+	"WFFFFFFFW",
+	"WWWWWWWLW",
+	"WWWWWWWWW"],
+	["SSSSSSSSS",
+	"SBSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSBSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]
+
+# Room-011
+	room.append([])
+	room[11] = [[
+	"GGOFFFFFF",
+	"OOFFFFFFW",
+	"FFPFFFFFW",
+	"WFFFFFFFW",
+	"WFBFFFFFW",
+	"WFFFFFFFW",
+	"WFFFFFFFW",
+	"WWWWWWWLW",
+	"WWWWWWWWW"],
+	["SSSSSSSSS",
+	"SBSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSOSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]
+

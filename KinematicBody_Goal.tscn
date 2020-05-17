@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://images/Goal_14.png" type="Texture" id=1]
+[ext_resource path="res://KinematicBody_Goal.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 3, 2, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 2, 0.2, 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1, 0.1, 1 )
+
+[node name="KinematicBody_Goal" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+
+[node name="RayCast_YP" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 1, 0 )

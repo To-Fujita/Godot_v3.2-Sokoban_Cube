@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://KinematicBody_Obstacle.gd" type="Script" id=1]
+[ext_resource path="res://images/Box_WhiteBear.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 1.98, 1.98, 1.98 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.99, 0.99, 0.99 )
+
+[node name="KinematicBody_Obstacle" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+
+[node name="RayCast_XP" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 1.3, 0.2, 0 )
+
+[node name="RayCast_XM" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( -1.3, 0.2, 0 )
+
+[node name="RayCast_YPN" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 1.5, 0 )
+
+[node name="RayCast_YPF" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+enabled = true
+cast_to = Vector3( 0, 1, 0 )
+
+[node name="RayCast_YM" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -1.2, 0 )
+
+[node name="RayCast_ZP" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0.2, 1.3 )
+
+[node name="RayCast_ZM" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0.2, -1.3 )
