@@ -5,12 +5,12 @@ extends Spatial
 var MZ_x
 var MZ_y
 var MZ_z
+var ROOM_Max
 var Block_size = 2
 var Goal_Result
 var Start_flag
 var End_flag
 var Goal_flag
-var ROOM_Max
 var SoundFlag
 var ROOM = []
 var Box = []
@@ -46,6 +46,7 @@ var PlayerMove = Vector2(0, 0)
 
 
 func _ready():
+	ROOM_Max = get_node("Node_Stage").room_max
 	Box_Count = 0
 	Ground_Count = 0
 	Floor_Count = 0
@@ -60,6 +61,8 @@ func _ready():
 
 func GameStart(ROOM_NO):
 	var Temp_ROOM = []
+	if ROOM_NO > ROOM_Max:
+		ROOM_NO = ROOM_Max
 	Player = get_node("KinematicBody_Player")
 	Start_flag = 1
 	self.show()
@@ -69,7 +72,6 @@ func GameStart(ROOM_NO):
 	Goal_Result = 0
 	Box_Count = 0
 	Obstacle_Count = 0
-	ROOM_Max = get_node("..").ROOM_Max
 	Current_ROOM = ROOM_NO
 	if get_node("..").ROOM_Result[Current_ROOM] != "C":
 		get_node("..").ROOM_Result[Current_ROOM] = "B"

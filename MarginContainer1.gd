@@ -68,86 +68,86 @@ func _on_Button11_pressed():
 	
 
 func _on_Button12_pressed():
-	pass
+	get_node("../../..").NewGame(12)
 	
 
 func _on_Button13_pressed():
-	pass
+	get_node("../../..").NewGame(13)
 	
 
 func _on_Button14_pressed():
-	pass
+	get_node("../../..").NewGame(14)
 	
 
 func _on_Button15_pressed():
-	pass
+	get_node("../../..").NewGame(15)
 	
 
 func _on_Button16_pressed():
-	pass
+	get_node("../../..").NewGame(16)
 	
 
 func _on_Button17_pressed():
-	pass
+	get_node("../../..").NewGame(17)
 	
 
 func _on_Button18_pressed():
-	pass
+	get_node("../../..").NewGame(18)
 	
 
 func _on_Button19_pressed():
-	pass
+	get_node("../../..").NewGame(19)
 	
 
 func _on_Button20_pressed():
-	pass
+	get_node("../../..").NewGame(20)
 	
 
 func _on_Button21_pressed():
-	pass
+	get_node("../../..").NewGame(21)
 	
 
 func _on_Button22_pressed():
-	pass
+	get_node("../../..").NewGame(22)
 	
 
 func _on_Button23_pressed():
-	pass
+	get_node("../../..").NewGame(23)
 	
 
 func _on_Button24_pressed():
-	pass
+	get_node("../../..").NewGame(24)
 	
 
 func _on_Button25_pressed():
-	pass
+	get_node("../../..").NewGame(25)
 	
 
 func _on_Button26_pressed():
-	pass
+	get_node("../../..").NewGame(26)
 	
 
 func _on_Button27_pressed():
-	pass
+	get_node("../../..").NewGame(27)
 	
 
 func _on_Button28_pressed():
-	pass
+	get_node("../../..").NewGame(28)
 	
 
 func _on_Button29_pressed():
-	pass
+	get_node("../../..").NewGame(29)
 	
 
 func _on_Button30_pressed():
-	pass
+	get_node("../../..").NewGame(30)
 	
 
 func _on_Button31_pressed():
-	pass
+	get_node("../../..").NewGame(31)
 	
 
 func _on_Button32_pressed():
-	pass
+	get_node("../../..").NewGame(32)
 	
 

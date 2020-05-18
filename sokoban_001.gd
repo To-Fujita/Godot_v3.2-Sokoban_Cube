@@ -14,6 +14,7 @@ extends Node
 # W: Wall
 
 var room = []
+var room_max = 12						# Max Room Array No. in this script
 
 func _ready():
 # Room-000
@@ -292,3 +293,24 @@ func _ready():
 	"SSSSSSSSS",
 	"SSSSSSSSS"]]
 
+# Room-000
+	room.append([])
+	room[12] = [[
+	"WWWWWWWWW",
+	"WFFFFFFFW",
+	"WFPFFFFFW",
+	"WFFFFBFFW",
+	"WFFFFFFFW",
+	"WFFBFFFFW",
+	"WFOFFFFFW",
+	"WGGWWLWLW",
+	"WWWWWWWWW"],
+	["SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS",
+	"SSSSSSSSS"]]

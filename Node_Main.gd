@@ -5,7 +5,7 @@ extends Node
 var StartFlag
 var SoundFlag
 var PlayerFlag
-var ROOM_Max = 12
+var ROOM_Max
 var Current_Room
 var ROOM_Result = []
 var ROOM_Replay = []
@@ -27,6 +27,7 @@ func _ready():
 	PlayerFlag = "Pierrot"
 	StartFlag = 0
 	MoveFlag = 0
+	ROOM_Max = get_node("Spatial/Node_Stage").room_max
 	Status = "Ready"
 	get_node("Spatial").hide()
 	get_node("Spatial/Label_Clear").hide()
@@ -38,7 +39,7 @@ func _ready():
 	get_node("Node_Menu/Control/MarginContainer1").hide()
 	get_node("Spatial/MarginContainer_G").hide()
 	get_node("Label_Replay").hide()
-	for i in range(ROOM_Max):
+	for i in range(ROOM_Max + 1):
 		ROOM_Result.append([])
 		ROOM_Result[i] = "A"
 		ROOM_Replay.append([])
@@ -50,6 +51,8 @@ func _ready():
 
 
 func NewGame(ROOM_NO):
+	if ROOM_NO > ROOM_Max:
+		ROOM_NO = ROOM_Max
 	Current_Room = ROOM_NO
 	Status = "NewGame"
 	get_node("Node_Menu/Control/VBoxContainer").hide()
@@ -73,7 +76,7 @@ func NextGame():
 	get_node("Label_Replay").hide()
 	get_node("Spatial").AllReset()
 	Current_Room = Current_Room + 1
-	if Current_Room >= ROOM_Max:
+	if Current_Room > ROOM_Max:
 		Current_Room = 0
 	NewGame(Current_Room)
 
@@ -92,7 +95,7 @@ func _on_Button_Quit_pressed():
 
 
 func _on_Button_Select_pressed():
-	for i in range(ROOM_Max):
+	for i in range(ROOM_Max + 1):
 		if ROOM_Result[i] == "B":
 			get_node("Node_Menu/Control/MarginContainer1/GridContainer/Button" + String(i)).add_color_override("font_color", Color(1, 1, 0, 1))
 		if ROOM_Result[i] == "C":
@@ -114,7 +117,7 @@ func DATA_Save():
 			ROOM_Replay[Current_Room] = get_node("Spatial/KinematicBody_Player").MoveData
 	var Temp_Result = ROOM_Result[0]
 	var Temp_Replay = ROOM_Replay[0]
-	for i in range(1, ROOM_Max):
+	for i in range(1, ROOM_Max + 1):
 		Temp_Result = Temp_Result + ROOM_Result[i]
 		Temp_Replay = Temp_Replay + "," + ROOM_Replay[i]
 	var SaveData = {"Player": PlayerFlag, "Sound": SoundFlag, "Result": Temp_Result, "Replay": Temp_Replay}
@@ -138,7 +141,7 @@ func DATA_Load():
 		SoundFlag = LoadData["Sound"]
 		Temp_Result = LoadData["Result"]
 		Temp_Replay = LoadData["Replay"]
-	for i in range(ROOM_Max):
+	for i in range(ROOM_Max + 1):
 		ROOM_Result[i] = Temp_Result.substr(i, 1)
 	ROOM_Replay = Temp_Replay.split(",", true)
 	if not f.file_exists(path):
@@ -153,8 +156,12 @@ func _on_Button_ResetOK_pressed():
 	get_node("WindowDialog_Reset").hide()
 	SoundFlag = "OFF"
 	PlayerFlag = "Pierrot"
-	for i in range(ROOM_Max):
+	ROOM_Replay = []
+	ROOM_Result = []
+	for i in range(ROOM_Max + 1):
+		ROOM_Result.append([])
 		ROOM_Result[i] = "A"
+		ROOM_Replay.append([])
 		ROOM_Replay[i] = "NA" + String(i)
 	DATA_Save()
 	get_node("Node_Menu/Control/VBoxContainer/HBoxContainer2/Button_Player").Button_Player()
